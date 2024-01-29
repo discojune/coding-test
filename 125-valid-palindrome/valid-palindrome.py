@@ -1,12 +1,14 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        # remove non-alphanumeric characters
-        s = s.lower().strip()
-        s = list(filter(str.isalnum, s))
+        
+        strs: Deque = collections.deque()
 
-        while len(s) > 1:
-            if s.pop(0) != s.pop():
+        for char in s:
+            if char.isalnum():
+                strs.append(char.lower())
+
+        while len(strs) > 1:
+            if strs.popleft() != strs.pop():
                 return False
 
-        
         return True
