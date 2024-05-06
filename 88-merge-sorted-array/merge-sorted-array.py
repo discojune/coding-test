@@ -4,32 +4,23 @@ class Solution:
         Do not return anything, modify nums1 in-place instead.
         """
 
-        for i in range(n):
-            num2 = nums2[i]
+        num1_p = m - 1
+        num2_p = n - 1
 
-            if set(nums1) == {0}:
-                nums1[0] = num2
-            else:   
-                num1_pointer = m + i - 1
-                while num1_pointer >= 0:
+        num1_idx = m + n - 1
 
-                    num1 = nums1[num1_pointer]
+        while num2_p >= 0:
+            if num1_p >= 0 and nums1[num1_p] >= nums2[num2_p]:
+                nums1[num1_idx] = nums1[num1_p]
 
-                    
+                num1_idx -= 1
+                num1_p -= 1
 
-                    if num2 >= num1:
-                        nums1.insert(num1_pointer + 1, num2)
-                        del nums1[-1]
+            else:
+                nums1[num1_idx] = nums2[num2_p]
 
-                        break
-                    
-                    elif num1_pointer == 0 and num2 < num1:
-                        nums1.insert(num1_pointer, num2)
-                        del nums1[-1]
-
-                        break
-
-                    num1_pointer -= 1
+                num1_idx -= 1
+                num2_p -= 1
                 
             
 
