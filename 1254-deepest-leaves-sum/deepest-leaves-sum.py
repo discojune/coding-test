@@ -7,35 +7,21 @@
 class Solution:
     def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
         from collections import deque
-        import math
 
-        def find_depth(x):
-            n = 0
-            while True:
-                if x >= 2 ** n and x < 2 ** (n+1):
-                    return n
+        queue = deque([root])
 
-                n += 1
+        while queue:
+            leave_sum = 0
 
-        node_idx = 1
-        visited = deque([(root, node_idx)])
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                
+                leave_sum += node.val
+            
+                if node.left:
+                    queue.append(node.left)
 
-        leaf_nodes = []
-        depth = 0
-        while visited:
-            node, node_idx = visited.popleft()
-            depth = find_depth(node_idx)
+                if node.right:
+                    queue.append(node.right)
 
-            if not node.left and not node.right:
-                leaf_nodes.append((node.val, depth))
-                continue
-
-            if node.left:
-                visited.append((node.left, 2*node_idx))
-
-            if node.right:
-                visited.append((node.right, 2*node_idx+1))
-
-        # height = find_depth(node_idx)
-        height = depth
-        return sum([val for val, depth in leaf_nodes if depth == height])
+        return leave_sum
