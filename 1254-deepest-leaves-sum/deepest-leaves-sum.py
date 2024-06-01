@@ -10,18 +10,18 @@ class Solution:
         import math
 
         def find_depth(x):
-                n = 0
-                while True:
-                    if x >= 2 ** n and x < 2 ** (n+1):
-                        return n
+            n = 0
+            while True:
+                if x >= 2 ** n and x < 2 ** (n+1):
+                    return n
 
-                    n += 1
+                n += 1
 
         node_idx = 1
         visited = deque([(root, node_idx)])
 
         leaf_nodes = []
-
+        depth = 0
         while visited:
             node, node_idx = visited.popleft()
             depth = find_depth(node_idx)
@@ -36,6 +36,6 @@ class Solution:
             if node.right:
                 visited.append((node.right, 2*node_idx+1))
 
-        height = find_depth(node_idx)
-        
+        # height = find_depth(node_idx)
+        height = depth
         return sum([val for val, depth in leaf_nodes if depth == height])
