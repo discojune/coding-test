@@ -14,7 +14,6 @@ class Solution:
 
                 next_node = graph[next_idx]
                 
-                print(new_path)
                 if not next_node and int(new_path.split(',')[-1]) == len(graph)-1:
                     
                     paths.append([int(s) for s in new_path.split(',')])
