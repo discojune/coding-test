@@ -14,13 +14,9 @@ class Solution:
         while queue:
    
             if level % 2 != 0:
-
-                queue_left = []
-                queue_right = []
-
-                for _ in range(int(len(queue) / 2)):
-                    node_1 = queue.popleft()
-                    node_2 = queue.pop()
+                for i in range(int(len(queue) / 2)):
+                    node_1 = queue[i]
+                    node_2 = queue[len(queue)-1-i]
 
                     node_1_value = node_1.val
                     node_2_value = node_2.val
@@ -28,24 +24,12 @@ class Solution:
                     node_1.val = node_2_value
                     node_2.val = node_1_value
 
-                    if node_1.left:
-                        queue_left.append(node_1.left)
-                        queue_left.append(node_1.right)
-                    
-                    if node_2.left:
-                        queue_right.insert(0, node_2.left)
-                        queue_right.insert(1, node_2.right)
+            for _ in range(len(queue)):
+                node = queue.popleft()
 
-                merge = queue_right + queue_left         
-                queue = deque(merge)
-
-            else:
-                for _ in range(len(queue)):
-                    node = queue.popleft()
-
-                    if node.left:
-                        queue.append(node.left)
-                        queue.append(node.right)
+                if node.left:
+                    queue.append(node.left)
+                    queue.append(node.right)
                         
             level += 1     
 
