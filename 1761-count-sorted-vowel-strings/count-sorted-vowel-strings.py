@@ -1,7 +1,6 @@
 class Solution:
     def countVowelStrings(self, n: int) -> int:
-        # if n == 33:
-        #     return 66045
+
         vowels = ["a", "e", "i", "o", "u"]
 
         memoization = []
@@ -26,6 +25,5 @@ class Solution:
 
             memoization = temp
 
-        # print(memoization)
         return len(memoization)
 
