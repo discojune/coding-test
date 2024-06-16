@@ -6,7 +6,7 @@ class Solution:
         index_group = [(j, i) for j, i in sorted(zip(groupSizes, index_group))]
         
         queue = deque(index_group)
-        print(queue)
+   
         result = []
         temp = []
         while queue:
