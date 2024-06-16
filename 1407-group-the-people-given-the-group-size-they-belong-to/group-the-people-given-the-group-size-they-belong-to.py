@@ -11,8 +11,7 @@ class Solution:
         temp = []
         while queue:
             group, person = queue.popleft()
-            # print(group, person, temp)
-
+            
             temp.append(person)
 
             if len(temp) >= group:
